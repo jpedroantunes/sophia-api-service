@@ -1,0 +1,4 @@
+class SophiaResponse
+  attr_reader response_body: JSON
+  attr_reader response_status_code: int
+end

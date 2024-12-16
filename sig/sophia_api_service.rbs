@@ -1,0 +1,12 @@
+module SophiaApiService
+  VERSION: String
+
+  @should_use_ssl: bool
+  @sophia_password: string
+  @sophia_routes: SophiaRoutes
+  @sophia_user: string
+
+  private
+
+  def authenticate: -> SophiaResponse
+end

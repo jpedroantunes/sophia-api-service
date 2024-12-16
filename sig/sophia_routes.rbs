@@ -1,0 +1,15 @@
+class SophiaRoutes
+  @sophia_base_url: string
+
+  def authentication_route: -> string
+
+  def classes_route: -> string
+
+  def collaborators_route: -> string
+
+  def courses_route: -> string
+
+  def sales_route: -> string
+
+  def students_route: -> string
+end
