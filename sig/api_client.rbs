@@ -1,0 +1,9 @@
+module SophiaService
+  class ApiClient
+    @sophia_routes: SophiaRoutes
+    @sophia_user: String | nil
+    @sophia_password: String | nil
+    @sophia_token: String | nil
+    @should_use_ssl: bool | nil
+  end
+end

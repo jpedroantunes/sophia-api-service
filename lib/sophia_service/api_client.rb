@@ -5,12 +5,12 @@ require "json"
 module SophiaService
   # Implement all Sophia API calls
   class ApiClient
-    def initialize(base_url:, user:, password:, is_sophia_production: true)
+    def initialize
       # Initialize base configuration to retrieve information from Sophia's API
-      @sophia_routes = SophiaRoutes.new(base_url: base_url)
-      @sophia_user = user
-      @sophia_password = password
-      @should_use_ssl = is_sophia_production
+      @sophia_routes = SophiaRoutes.new(base_url: SophiaService.configuration.base_url)
+      @sophia_user = SophiaService.configuration.user
+      @sophia_password = SophiaService.configuration.password
+      @should_use_ssl = SophiaService.configuration.is_sophia_production
       @sophia_token = authenticate
       return unless @sophia_user.nil? || @sophia_password.nil?
 
