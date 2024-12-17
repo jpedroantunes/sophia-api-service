@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in sophia_api_service.gemspec
+# Specify your gem's dependencies in sophia_service.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

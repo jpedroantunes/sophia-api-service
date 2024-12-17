@@ -2,9 +2,9 @@
 
 # Class encapsulating all available Sophia Routes
 class SophiaRoutes
-  def initialize
-    @sophia_base_url = ENV.fetch("SOPHIA_URL", nil)
-    return if @sophia_base_url.blank?
+  def initialize(base_url:)
+    @sophia_base_url = base_url
+    return unless @sophia_base_url.nil?
 
     raise "The Sophia Base URL 'SOPHIA_URL' may be defined as an environment variable"
   end
