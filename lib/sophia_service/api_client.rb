@@ -8,8 +8,8 @@ module SophiaService
     def initialize
       # Initialize base configuration to retrieve information from Sophia's API
       @sophia_routes = SophiaRoutes.new(base_url: SophiaService.configuration.base_url)
-      @sophia_user = SophiaService.configuration.user
-      @sophia_password = SophiaService.configuration.password
+      @sophia_user = SophiaService.configuration.sophia_user
+      @sophia_password = SophiaService.configuration.sophia_password
       @should_use_ssl = SophiaService.configuration.is_sophia_production
       @sophia_token = authenticate
       return unless @sophia_user.nil? || @sophia_password.nil?

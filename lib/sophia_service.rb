@@ -19,13 +19,20 @@ module SophiaService
 
   # Implement Sophia Service configuration
   class Configuration
-    attr_accessor :base_url, :sophia_user, :sophia_password, :is_sophia_production
+    attr_reader :base_url, :sophia_user, :sophia_password, :is_sophia_production
 
     def initialize
-      @base_url = nil
-      @sophia_user = nil
-      @sophia_password = nil
+      @base_url = ""
+      @sophia_user = ""
+      @sophia_password = ""
       @is_sophia_production = true
+    end
+
+    def set_configuration(base_url:, sophia_user:, sophia_password:, is_sophia_production:)
+      @base_url = base_url
+      @sophia_user = sophia_user
+      @sophia_password = sophia_password
+      @is_sophia_production = is_sophia_production
     end
   end
 end
