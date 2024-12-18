@@ -1,9 +1,20 @@
 module SophiaService
+  attr_accessor self.configuration: Configuration | nil
+
+  def self.configure: -> Configuration
+
   class ApiClient
     @sophia_routes: SophiaRoutes
     @sophia_user: String | nil
     @sophia_password: String | nil
     @sophia_token: String | nil
     @should_use_ssl: bool | nil
+  end
+
+  class Configuration
+    attr_accessor base_url: String | nil
+    attr_accessor is_sophia_production: bool | nil
+    attr_accessor sophia_password: String | nil
+    attr_accessor sophia_user: String | nil
   end
 end

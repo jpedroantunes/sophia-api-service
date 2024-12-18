@@ -1,6 +1,0 @@
-class Configuration
-  attr_accessor base_url: String | nil
-  attr_accessor is_sophia_production: bool | nil
-  attr_accessor sophia_password: String | nil
-  attr_accessor sophia_user: String | nil
-end
