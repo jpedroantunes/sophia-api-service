@@ -1,4 +1,4 @@
 class SophiaResponse
-  attr_reader body: JSON | Array[untyped]
+  attr_reader body: untyped
   attr_reader status_code: int
 end
