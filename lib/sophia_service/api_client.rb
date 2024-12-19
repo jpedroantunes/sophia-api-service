@@ -72,36 +72,6 @@ module SophiaService
       SophiaResponse.new(https.request(request))
     end
 
-    def get_teachers_by_units(teachers_units, branch_teachers)
-      # This method returns the following structure {'teacher01@gmail.com': ['Mód BOOK 1', 'Mód BOOK 2']}
-      classes = get_classes_by_units(teachers_units).body
-      if branch_teachers
-        classes = classes.select do |class_unit|
-          class_unit["nomeResumido"].to_s.include?("@")
-        end
-      end
-
-      teachers = {}
-      classes.each do |teacher_class|
-        next if teacher_class["colaborador"].blank? || teacher_class["colaborador"]["email"].blank?
-
-        teacher_email = teacher_class["colaborador"]["email"].downcase.strip
-        teacher_class_description = teacher_class["curso"]["descricao"]
-        if teachers.include?(teacher_email)
-          teachers[teacher_email]["modulos"] |= [teacher_class_description]
-        else
-          # Try to create similar Sophia Student structure to teachers
-          teachers[teacher_email] = {
-            "email" => teacher_email,
-            "nome" => teacher_class["colaborador"]["nome"],
-            "codigo" => teacher_class["colaborador"]["codigo"],
-            "modulos" => [teacher_class_description]
-          }
-        end
-      end
-      teachers.values
-    end
-
     def get_sales_by_students(students_codes)
       # Convert array of units to a String separated by comma, to send it to Sophia API
       students_codes_query = students_codes.join(",")
@@ -113,22 +83,13 @@ module SophiaService
       SophiaResponse.new(https.request(request))
     end
 
-    def get_courses_without_books(classes_without_books_ids)
+    def get_courses
       url = URI(@sophia_routes.courses_route)
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = @should_use_ssl
       request = Net::HTTP::Get.new(url)
       request["Token"] = @sophia_token
-      response = https.request(request)
-      JSON.parse(response.read_body)
-      result = JSON.parse(response.read_body)
-      final_result = []
-      result.each do |course|
-        if classes_without_books_ids.include?(course["codigo"])
-          final_result << "Mód. #{course['nomeResumido']}"
-        end
-      end
-      final_result
+      SophiaResponse.new(https.request(request))
     end
 
     def inspect
