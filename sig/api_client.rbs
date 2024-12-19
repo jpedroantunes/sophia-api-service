@@ -11,6 +11,24 @@ module SophiaService
     @sophia_password: (String | nil)
     @sophia_token: (String | nil)
     @should_use_ssl: (bool | nil)
+
+    def get_classes_by_codes: -> SophiaResponse
+
+    def get_classes_by_units: -> SophiaResponse
+
+    def get_collaborator_by_email: -> SophiaResponse
+
+    def get_courses: -> SophiaResponse
+
+    def get_sales_by_students: -> SophiaResponse
+
+    def get_student_by_email: -> SophiaResponse
+
+    def get_students_by_units: -> SophiaResponse
+
+    private
+
+    def authenticate: -> String
   end
 
   class Configuration
