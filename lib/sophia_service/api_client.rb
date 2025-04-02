@@ -63,6 +63,20 @@ module SophiaService
       SophiaResponse.new(https.request(request))
     end
 
+    def get_classes_by_units_and_situation(class_units, class_situation)
+      # Convert array of units and situation to a String separated by comma, to send it to Sophia API
+      class_units_query = class_units.join(",")
+      class_situation_query = class_situation.join(",")
+      url = URI("#{@sophia_routes.classes_route}?Situacoes=#{class_situation_query}&Unidades=#{class_units_query}")
+      https = Net::HTTP.new(url.host, url.port)
+      https.use_ssl = @should_use_ssl
+      request = Net::HTTP::Get.new(url)
+      request["Accept"] = "application/json"
+      request["Content-Type"] = "application/json"
+      request["Token"] = @sophia_token
+      SophiaResponse.new(https.request(request))
+    end
+
     def get_collaborator_by_email(email)
       url = URI("#{@sophia_routes.collaborators_route}?Email=#{email}")
       https = Net::HTTP.new(url.host, url.port)
