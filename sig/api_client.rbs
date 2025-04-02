@@ -16,6 +16,8 @@ module SophiaService
 
     def get_classes_by_units: -> SophiaResponse
 
+    def get_classes_by_units_and_situation: -> SophiaResponse
+
     def get_collaborator_by_email: -> SophiaResponse
 
     def get_courses: -> SophiaResponse
